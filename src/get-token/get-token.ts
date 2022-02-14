@@ -2,7 +2,8 @@ import axios from "axios"
 import { SolanaRequest, SolanaTokenData, SolanaTransaction, TokenImageData, TokenIndex, TokenMetaData } from "./solana-types";
 
 
-const solanaUrl = "https://api.devnet.solana.com";
+const solanaUrl = process.env.REACT_APP_SOLANA_RPC_HOST!;
+const solscanUrl = process.env.REACT_APP_SOLSCAN_HOST!; 
 
 const SolanaUtilities = {
 
@@ -39,7 +40,7 @@ const SolanaUtilities = {
     },
 
     getTokenUrl : (tokenId: string) => {
-        return axios.get<any, TokenMetaData>(`https://api-devnet.solscan.io/account?address=${tokenId}`);
+        return axios.get<any, TokenMetaData>(`${solscanUrl}/account?address=${tokenId}`);
     },
 
     getArweaveUrlOne : (url: string) => {
